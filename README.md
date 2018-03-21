@@ -1,11 +1,7 @@
-#commonApp
+## 安装Ionic3
 
-Ionic 2 专注于以标准的 HTML 、 CSS 和 JavaScript 来构建移动站点，并可以通过 Cordova 打包成移动 App，只需编写一次代码，就可以分别部署到 iOS 、Android 等多种移动平台上。Ionic 2 与一代相比有较大的变化，基于最新的 Angular 2 (Angular 2 比Angular 1 快5到10倍)，使用 TypeScript进行开发
-
-## 安装Ionic2
-
-* npm uninstall -g ionic 如果之前安装过 Ionic 2 的 beta 版本，需要先卸载掉
-* npm install -g ionic@latest
+* npm uninstall -g ionic 删除以前版本
+* npm install -g ionic@latest 下载最新版本
 * ionic -version 查看版本号
 
 ## 安装Cordova
@@ -65,8 +61,9 @@ ionic cordova run android --livereload
 ionic cordova run android --address 192.168.10.113 --port 6228 --livereload
 
 ## 制作签名文件(.keystore文件)
-keytool -genkey -v -keystore commonApp.keystore -alias commonApp -keyalg RSA -validity 10000
+keytool -genkey -v -keystore smallApp.keystore -alias smallApp.keystore -keyalg RSA -validity 20000
 
+jarsigner -verbose -keystore smallApp.keystore -signedjar D:\Jet\Dev\github\CommonApp\platforms\android\app\build\outputs\apk\release\complete.apk D:\Jet\Dev\github\CommonApp\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk smallApp.keystore
 ## build
 
 * 打包debug调试版（生成的apk就是debug调试版本） ionic cordova build android --prod
