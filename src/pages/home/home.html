@@ -1,20 +1,28 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-auto>
+        <span class="logo"></span>
+      </ion-col>
+      <ion-col></ion-col>
+      <ion-col col-auto></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>即将高仿蜻蜓FM，敬请期待!</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    加油，有梦想就去实现，想实现就赶紧行动，时间在追你。
   </p>
   <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
+    梦想在启航，我心将飞翔.
   </p>
-  <button ion-button full icon-left (click)="changeTheme()" >
-    <ion-icon name="ios-sunny"></ion-icon>切换主题
-  </button>
+  <!--<div class="slide-img">
+    <ion-slides #slider pager autoplay="2000" loop="true" (ionSlideDidChange)="onSlideChanged()" dir="ltr">
+      <ion-slide *ngFor="let slide of slides" [ngStyle]="{'background':'url(' +slide.imageUrl+')'}">
+        <h2>{{slide.title}}</h2>
+      </ion-slide>
+    </ion-slides>
+  </div>-->
 </ion-content>

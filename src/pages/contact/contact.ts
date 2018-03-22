@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { SettingsProvider } from './../../providers/settings/settings'
 
 @Component({
   selector: 'page-contact',
@@ -7,8 +8,20 @@ import { NavController } from 'ionic-angular';
 })
 export class ContactPage {
 
-  constructor(public navCtrl: NavController) {
+  selectedTheme: String;
+  constructor(
+      public navCtrl: NavController,
+      private settings: SettingsProvider
+    ) {
+      this.settings.getActiveTheme().subscribe( val => this.selectedTheme = val );
+  }
 
+  changeTheme() {
+    if (this.selectedTheme === 'dark-theme') {
+      this.settings.setActiveTheme('light-theme');
+    } else {
+      this.settings.setActiveTheme('dark-theme');
+    }
   }
 
 }

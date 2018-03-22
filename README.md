@@ -23,7 +23,7 @@
 ## 在浏览器中运行
 * npm config set sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 * npm install
-* ionic serve 或 ionic serve --address 192.168.10.113 --port 6228 --livereload-port 35600 --dev-logger-port 53600
+* ionic serve 或 ionic serve --address 192.168.1.5 --port 6888 --livereload-port 35600 --dev-logger-port 53600
 
 ## Navigation
 

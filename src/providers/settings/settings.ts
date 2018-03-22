@@ -14,7 +14,7 @@ export class SettingsProvider {
 
   constructor() {
     // theme 是 BehaviorSubject实例
-    this.theme = new BehaviorSubject('light-theme');
+    this.theme = new BehaviorSubject('dark-theme');
     console.log('Hello SettingsProvider Provider');
   }
 
