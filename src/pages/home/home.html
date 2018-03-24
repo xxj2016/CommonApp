@@ -18,7 +18,7 @@
   </ion-grid>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <div class="slide-img">
     <ion-slides autoplay="2500" loop="true">
       <ion-slide *ngFor="let slide of slides" [ngStyle]="{'background' : 'url(' + slide.imageUrl + ')'}">
@@ -26,6 +26,37 @@
       </ion-slide>
     </ion-slides>
   </div>
+    <ion-card *ngFor="let card of cards">
+    <img [src]="card.imageUrl" (click)="cardTapped(card)" />
+    <ion-card-content>
+      <h2 class="card-title">
+        {{card.title}}
+      </h2>
+      <p>
+        {{card.description}}
+      </p>
+    </ion-card-content>
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-left (click)="favorite(card)">
+          <ion-icon name='star'></ion-icon>
+          Favorite
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-left (click)="listen(card)">
+          <ion-icon name='musical-notes'></ion-icon>
+          Listen
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" icon-left (click)="share(card)">
+          <ion-icon name='share-alt'></ion-icon>
+          Share
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
   <h2>即将高仿蜻蜓FM，敬请期待!</h2>
   <p>
     加油，有梦想就去实现，想实现就赶紧行动，时间在追你。
