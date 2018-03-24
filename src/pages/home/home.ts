@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { NavController, NavParams, Slides } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -68,6 +68,22 @@ export class HomePage {
     for (let i = 0; i < 20; i++) {
       this.slides.push(this.slides[i % 4]);
     }
+  }
+  
+  cardTapped(card) {
+    alert(card.title + ' was tapped.');
+  }
+
+  share(card) {
+    alert(card.title + ' was shared.');
+  }
+
+  listen(card) {
+    alert('Listening to ' + card.title);
+  }
+
+  favorite(card) {
+    alert(card.title + ' was favorited.');
   }
 
 }
