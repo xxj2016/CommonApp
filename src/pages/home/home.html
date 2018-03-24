@@ -4,13 +4,28 @@
       <ion-col col-auto>
         <span class="logo"></span>
       </ion-col>
-      <ion-col></ion-col>
-      <ion-col col-auto></ion-col>
+      <ion-col style="width: 50%;">
+          <ion-slides #slider spaceBetween="10" slidesPerView="2">
+            <ion-slide *ngFor="let slide of slides" style="font-size: 1em">
+              {{slide.title}}
+            </ion-slide>
+          </ion-slides>
+      </ion-col>
+      <ion-col col-auto>
+        <ion-icon name="heart"></ion-icon>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-header>
 
 <ion-content padding>
+  <div class="slide-img">
+    <ion-slides autoplay="2500" loop="true">
+      <ion-slide *ngFor="let slide of slides" [ngStyle]="{'background' : 'url(' + slide.imageUrl + ')'}">
+        <h2>{{slide.title}}</h2>
+      </ion-slide>
+    </ion-slides>
+  </div>
   <h2>即将高仿蜻蜓FM，敬请期待!</h2>
   <p>
     加油，有梦想就去实现，想实现就赶紧行动，时间在追你。
