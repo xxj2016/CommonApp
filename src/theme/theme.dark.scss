@@ -85,7 +85,7 @@
     color: white;
   }
   .range-bar {
-    background-color: #463E3F !important;
+    background-color: #463e3f !important;
   }
   .s2,
   .s3,
@@ -97,5 +97,17 @@
     background-color: white !important;
     color: black !important;
   }
-}
 
+  .list-ios > .item-block:first-child {
+    border-top: none;
+  }
+  .list-ios > .item-block:last-child {
+    border-bottom: none;
+  }
+  .list-ios .item-block .item-inner {
+    border-bottom: none;
+  }
+  .list-header-ios {
+    border-bottom: none;
+  }
+}

@@ -69,6 +69,13 @@ export class HomePage {
       this.slides.push(this.slides[i % 4]);
     }
   }
+
+  ionViewDidLoad() {
+  }
+
+  ionViewWillEnter() {
+    console.log(this.slider.getActiveIndex());
+  }
   
   cardTapped(card) {
     alert(card.title + ' was tapped.');
@@ -86,4 +93,12 @@ export class HomePage {
     alert(card.title + ' was favorited.');
   }
 
+  slideChanged() {
+    let currentIndex = this.slider.getActiveIndex();
+    console.log('Current index is', currentIndex);
+  }
+
+  tap() {
+    console.log(this.slider.getActiveIndex());
+  }
 }

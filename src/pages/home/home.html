@@ -4,12 +4,12 @@
       <ion-col col-auto>
         <span class="logo"></span>
       </ion-col>
-      <ion-col style="width: 50%;">
-          <ion-slides #slider spaceBetween="10" slidesPerView="2">
-            <ion-slide *ngFor="let slide of slides" style="font-size: 1em">
-              {{slide.title}}
-            </ion-slide>
-          </ion-slides>
+      <ion-col class="category">
+        <ion-slides #slider (ionSlideDidChange)="slideChanged()" (ionSlideTap)="tap()">
+          <ion-slide *ngFor="let slide of slides" class="category-item">
+            {{slide.title}}
+          </ion-slide>
+        </ion-slides>
       </ion-col>
       <ion-col col-auto>
         <ion-icon name="heart"></ion-icon>
@@ -26,7 +26,19 @@
       </ion-slide>
     </ion-slides>
   </div>
-    <ion-card *ngFor="let card of cards">
+  <ion-list class="content-list">
+    <ion-list-header>
+      Action
+    </ion-list-header>
+    <ion-item *ngFor="let card of cards">
+      <ion-thumbnail item-start>
+        <img [src]="card.imageUrl">
+      </ion-thumbnail>
+      <h2>{{card.title}}</h2>
+      <p>{{card.description}}</p>
+    </ion-item>
+  </ion-list>
+  <ion-card *ngFor="let card of cards">
     <img [src]="card.imageUrl" (click)="cardTapped(card)" />
     <ion-card-content>
       <h2 class="card-title">
@@ -37,19 +49,19 @@
       </p>
     </ion-card-content>
     <ion-row no-padding>
-      <ion-col>
+      <ion-col col-4>
         <button ion-button clear small color="danger" icon-left (click)="favorite(card)">
           <ion-icon name='star'></ion-icon>
           Favorite
         </button>
       </ion-col>
-      <ion-col text-center>
+      <ion-col text-center col-4>
         <button ion-button clear small color="danger" icon-left (click)="listen(card)">
           <ion-icon name='musical-notes'></ion-icon>
           Listen
         </button>
       </ion-col>
-      <ion-col text-right>
+      <ion-col text-right col-4>
         <button ion-button clear small color="danger" icon-left (click)="share(card)">
           <ion-icon name='share-alt'></ion-icon>
           Share
@@ -57,6 +69,7 @@
       </ion-col>
     </ion-row>
   </ion-card>
+
   <h2>即将高仿蜻蜓FM，敬请期待!</h2>
   <p>
     加油，有梦想就去实现，想实现就赶紧行动，时间在追你。
