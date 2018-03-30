@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Slides } from 'ionic-angular';
-
+import { AppGlobal, AppService } from './../../providers/service/service'
+import _ from 'lodash';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -61,9 +62,14 @@ export class HomePage {
       title: 'Run-D.M.C.',
       description: 'The American hip hop group widely acknowledged as one of the most influential acts in the history of hip hop.'
     },];
+
+  banners: Array<any> = [];
+  categories: Array<any> = [];
+  attrs: Array<any> = [];
   constructor(
     public navCtrl: NavController,
-    public nanParams: NavParams
+    public nanParams: NavParams,
+    public appService: AppService
   ) {
     for (let i = 0; i < 20; i++) {
       this.slides.push(this.slides[i % 4]);
@@ -71,6 +77,9 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+    this.getBanners();
+    this.getHotPageCategory();
+    this.getNeoRecommendAttrs();
   }
 
   ionViewWillEnter() {
@@ -95,10 +104,37 @@ export class HomePage {
 
   slideChanged() {
     let currentIndex = this.slider.getActiveIndex();
-    console.log('Current index is', currentIndex);
+    console.log('Current Attrs is', this.attrs[currentIndex]);
   }
 
   tap() {
     console.log(this.slider.getActiveIndex());
+  }
+
+  // 获取分类
+  getNeoRecommendAttrs() {
+    this.appService.httpGetJsonp(AppGlobal.domain, AppGlobal.API.getNeoRecommendAttrs, {}, rs => {
+      this.attrs = rs.data;
+      console.log(this.attrs);
+    })
+  }
+
+  // 获取轮播图
+  getBanners() {
+    this.appService.httpGetJsonp(AppGlobal.domain, AppGlobal.API.getNeoRecommendBanner, {}, rs => {
+      console.log(rs);
+      this.banners = rs.data;
+    })
+  }
+
+  // 获取精选页面内容
+  getHotPageCategory() {
+    let categories = [3617, 3629, 521, 3636, 545, 527, 529, 3251, 523, 531, 533];
+    this.appService.httpGetJsonp(
+      AppGlobal.dosubmain, AppGlobal.API.getHotPageCategory + `/${categories.join('_')}`, null, rs => {
+      console.log(rs);
+      this.categories = _.valuesIn(rs['data']);
+      console.log(this.categories);
+    })
   }
 }

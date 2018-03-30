@@ -1,17 +1,19 @@
 <ion-header>
     <ion-grid>
         <ion-row>
-        <ion-col col-auto no-padding class="header-text">
-            <!-- <img style="width: 85px; height: 30px;" src="../../assets/imgs/qingtingfm-pink.png" alt=""> -->
-            蜻1
-        </ion-col>
-        <ion-col class="category">
-            <ion-slides #slider (ionSlideDidChange)="slideChanged()" (ionSlideTap)="tap()">
-            <ion-slide *ngFor="let slide of slides" class="category-item">
-                {{slide.title}}
-            </ion-slide>
-            </ion-slides>
-        </ion-col>
+            <ion-col col-auto no-padding class="header-text">
+                <!-- <img style="width: 85px; height: 30px;" src="../../assets/imgs/qingtingfm-pink.png" alt=""> -->
+                蜻1
+            </ion-col>
+            <ion-col class="category">
+                <ion-slides #slider (ionSlideDidChange)="slideChanged()" (ionSlideTap)="tap()">
+                    <ng-container *ngFor="let attr of attrs; let i = index;">
+                        <ion-slide *ngIf="i < 10"  class="category-item">
+                            {{attr.name}}
+                        </ion-slide>
+                    </ng-container>
+                </ion-slides>
+            </ion-col>
         <ion-col col-auto>
             <ion-icon name="heart"></ion-icon>
         </ion-col>
@@ -20,72 +22,78 @@
 </ion-header>
 
 <ion-content>
-    <div class="slide-img">
-        <ion-slides autoplay="2500" loop="true">
-            <ion-slide *ngFor="let slide of slides" [ngStyle]="{'background' : 'url(' + slide.imageUrl + ')'}">
-                <h2>{{slide.title}}</h2>
+    <div class="slide-box">
+        <ion-slides>
+            <ion-slide *ngFor="let banner of banners" class="slide-item" [ngStyle]="{'background-image' : 'url(' + banner.img_url + ')'}">
+            <!-- <h2>{{banner.title}}</h2> -->
             </ion-slide>
         </ion-slides>
     </div>
-    <ion-list class="content-list" no-lines>
-            <ion-list-header no-margin>
-                Action
-            </ion-list-header>
-        <ion-item *ngFor="let card of cards">
-            <ion-thumbnail item-start>
-                <img [src]="card.imageUrl">
-            </ion-thumbnail>
-            <h2>{{card.title}}</h2>
-            <p>{{card.description}}</p>
-        </ion-item>
+    <ion-list class="content-list" no-lines *ngFor="let category of categories">
+        <ion-list-header no-margin>
+            {{category.name}}
+        </ion-list-header>
+        <ng-container *ngFor="let recommend of category.recommends;let i = index;">
+            <ion-item *ngIf="i < 5">
+                <ion-thumbnail item-start>
+                <img [src]="recommend.img_url">
+                </ion-thumbnail>
+                <h6>{{recommend.title}}</h6>
+                <p>{{recommend.desc}}</p>
+            </ion-item>
+        </ng-container>
     </ion-list>
-    <ion-card *ngFor="let card of cards">
-        <img [src]="card.imageUrl" (click)="cardTapped(card)" />
-        <ion-card-content>
-        <h2 class="card-title">
-            {{card.title}}
-        </h2>
-        <p>
-            {{card.description}}
-        </p>
-        </ion-card-content>
-        <ion-row no-padding>
-        <ion-col col-4>
-            <button ion-button clear small color="danger" icon-left (click)="favorite(card)">
-            <ion-icon name='star'></ion-icon>
-            Favorite
-            </button>
-        </ion-col>
-        <ion-col text-center col-4>
-            <button ion-button clear small color="danger" icon-left (click)="listen(card)">
-            <ion-icon name='musical-notes'></ion-icon>
-            Listen
-            </button>
-        </ion-col>
-        <ion-col text-right col-4>
-            <button ion-button clear small color="danger" icon-left (click)="share(card)">
-            <ion-icon name='share-alt'></ion-icon>
-            Share
-            </button>
-        </ion-col>
-        </ion-row>
-    </ion-card>
-
+    <ng-container *ngFor="let category of categories">
+        <ng-container *ngFor="let recommend of category.recommends;let i = index;">
+            <ion-card *ngIf="i == 10">
+                <img [src]="recommend.img_url" (click)="cardTapped(recommend)" />
+                <ion-card-content>
+                    <h2 class="card-title">
+                        {{recommend.title}}
+                    </h2>
+                    <p>
+                        {{recommend.desc}}
+                    </p>
+                </ion-card-content>
+                <ion-row no-padding>
+                <ion-col col-4>
+                    <button ion-button clear small color="danger" icon-left (click)="favorite(recommend)">
+                    <ion-icon name='star'></ion-icon>
+                    Favorite
+                    </button>
+                </ion-col>
+                <ion-col text-center col-4>
+                    <button ion-button clear small color="danger" icon-left (click)="listen(recommend)">
+                    <ion-icon name='musical-notes'></ion-icon>
+                    Listen
+                    </button>
+                </ion-col>
+                <ion-col text-right col-4>
+                    <button ion-button clear small color="danger" icon-left (click)="share(recommend)">
+                    <ion-icon name='share-alt'></ion-icon>
+                    Share
+                    </button>
+                </ion-col>
+                </ion-row>
+            </ion-card>
+        </ng-container>
+    </ng-container>
+    
     <div padding>
         <h2>即将高仿蜻蜓FM，敬请期待!</h2>
         <p>
-            加油，有梦想就去实现，想实现就赶紧行动，时间在追你。
+        加油，有梦想就去实现，想实现就赶紧行动，时间在追你。
         </p>
         <p>
-            梦想在启航，我心将飞翔.
+        梦想在启航，我心将飞翔.
         </p>
     </div>
 
   <!--<div class="slide-img">
-    <ion-slides #slider pager autoplay="2000" loop="true" (ionSlideDidChange)="onSlideChanged()" dir="ltr">
-      <ion-slide *ngFor="let slide of slides" [ngStyle]="{'background':'url(' +slide.imageUrl+')'}">
-        <h2>{{slide.title}}</h2>
-      </ion-slide>
-    </ion-slides>
-  </div>-->
+        <ion-slides #slider pager autoplay="2000" loop="true" (ionSlideDidChange)="onSlideChanged()" dir="ltr">
+          <ion-slide *ngFor="let slide of slides" [ngStyle]="{'background':'url(' +slide.imageUrl+')'}">
+            <h2>{{slide.title}}</h2>
+          </ion-slide>
+        </ion-slides>
+      </div>-->
 </ion-content>

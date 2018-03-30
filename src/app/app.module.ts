@@ -4,13 +4,15 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { SettingsProvider } from '../providers/settings/settings';
+import { SettingsProvider, ToastService } from '../providers/settings/settings';
+import { AppGlobal, AppService } from '../providers/service/service';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     TabsPage
   ],
   imports: [
+    HttpModule,
+    JsonpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -36,7 +40,10 @@ import { SettingsProvider } from '../providers/settings/settings';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SettingsProvider
+    SettingsProvider,
+    ToastService,
+    AppGlobal,
+    AppService
   ]
 })
 export class AppModule {}
