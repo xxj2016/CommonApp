@@ -21,7 +21,7 @@ page-home {
         height: 125px;
     }
     .slide-item {
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
     }
     .category {
@@ -48,5 +48,22 @@ page-home {
     }
     .card-title {
         color: #FF6060;
+    }
+
+    .category-warp {
+
+        .category-box {
+            padding: 10px 10px 16px;
+
+            ion-col {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                font-size: 13px;
+
+                &.active {
+                    color: #FF6060;
+                }
+            }
+        }
     }
 }

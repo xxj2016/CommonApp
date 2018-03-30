@@ -21,7 +21,7 @@
     </ion-grid>
 </ion-header>
 
-<ion-content>
+<ion-content [hidden]="currentIndex !== 0">
     <div class="slide-box">
         <ion-slides>
             <ion-slide *ngFor="let banner of banners" class="slide-item" [ngStyle]="{'background-image' : 'url(' + banner.img_url + ')'}">
@@ -88,12 +88,28 @@
         梦想在启航，我心将飞翔.
         </p>
     </div>
-
-  <!--<div class="slide-img">
-        <ion-slides #slider pager autoplay="2000" loop="true" (ionSlideDidChange)="onSlideChanged()" dir="ltr">
-          <ion-slide *ngFor="let slide of slides" [ngStyle]="{'background':'url(' +slide.imageUrl+')'}">
-            <h2>{{slide.title}}</h2>
-          </ion-slide>
-        </ion-slides>
-      </div>-->
+</ion-content>
+<ion-content [hidden]="currentIndex === 0" class="category-warp">
+    <ion-grid class="category-box">
+        <ion-row>
+            <ion-col col-3 text-center *ngFor="let filter of filters;let i = index;" [ngClass]="{'active': currentActive === i}" (click)="selectFilter(filter, i)" >
+                {{filter.name}}
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-list class="content-list" no-lines style="margin-bottom: 0;">
+        <ion-item *ngFor="let channel of channels;let i = index;">
+            <ion-thumbnail item-start>
+            <img [src]="channel.cover">
+            </ion-thumbnail>
+            <h6>{{channel.title}}</h6>
+            <p>{{channel.description}}</p>
+        </ion-item>
+        <ion-item>
+            <p text-center *ngIf="!noMore" (click)="loadMore()">
+                查看更多内容<ion-icon name="eye"></ion-icon>
+            </p>
+            <p text-center *ngIf="noMore">没有更多啦</p>
+        </ion-item>
+    </ion-list>
 </ion-content>

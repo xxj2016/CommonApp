@@ -21,7 +21,8 @@ export class AppGlobal {
         // 精选页面
         getNeoRecommendBanner: '/capi/neo-recommend/banner',
         getNeoRecommendAttrs: '/capi/neo-recommend/attrs',
-        getHotPageCategory: '/v2/hotpage/category'
+        getNeoChannelFilter: '/capi/neo-channel-filter',
+        getHotPageCategory: '/v2/hotpage/category',
     };
 }
 
