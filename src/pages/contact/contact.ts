@@ -9,12 +9,12 @@ export class ContactPage {
   
   following = false;
   user = {
-    name: 'Paula Bolliger',
+    name: 'Jet Xu',
     profileImage: 'assets/imgs/avatar/girl-avatar.png',
     coverImage: 'assets/imgs/background/background-5.jpg',
-    occupation: 'Designer',
-    location: 'Seattle, WA',
-    description: 'A wise man once said: The more you do something, the better you will become at it.',
+    occupation: '前端奋斗者',
+    location: '珠海, 香洲',
+    description: '认真你就输了？切，不认真你才输呢！',
     followers: 456,
     following: 1052,
     posts: 35
